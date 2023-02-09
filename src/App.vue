@@ -26,7 +26,7 @@ const highPeformanceFireControllRader = ref(false);
 
 const firstAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / (( 100 + defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
     if(highPeformanceFireControllRader.value){
       attackTime = attackTime * 0.85;
     }
@@ -36,21 +36,21 @@ const firstAttack = computed(
 )
 const secondAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / (( 100 + defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const thirdAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / (( 100 + defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const fourthTimeOnwardsAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / (( 100 + defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
