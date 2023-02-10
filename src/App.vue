@@ -23,6 +23,7 @@ const upToSecondDirectReductionSkill = ref(0);
 const upToThirdDirectReductionSkill = ref(0);
 
 const highPeformanceFireControllRader = ref(false);
+const experimentalGunBarrel = ref(false);
 
 const firstAttack = computed(
   (): number => {
@@ -48,9 +49,19 @@ const thirdAttack = computed(
     return attackTime;
   }
 )
-const fourthTimeOnwardsAttack = computed(
+const fourthAttack = computed(
   (): number => {
     let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const fifthAttack = computed(
+  (): number => {
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    if(experimentalGunBarrel.value) {
+      attackTime = attackTime * 1.35;
+    }
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
@@ -71,21 +82,63 @@ const cumulativeThirdAttack = computed(
 )
 const cumulativeFourthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthTimeOnwardsAttack.value;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value;
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFifthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthTimeOnwardsAttack.value*2;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value;
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSixthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthTimeOnwardsAttack.value*3;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*2;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeSeventhAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*3;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeEighthAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*4;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeNinthAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*5;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeTenthAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*6;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeEleventhAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*7;
+    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    return attackTime;
+  }
+)
+const cumulativeTwelfthAttack = computed(
+  (): number => {
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*8;
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
@@ -120,7 +173,7 @@ const cumulativeSixthAttack = computed(
   <input type="number" v-model.number="skill6">%
   <br>
   <br>
-  直接短縮スキル1
+  直接短縮スキル1(ウルリッヒフォンフッテンなど)
   <input type="number" v-model.number="directReductionSkill1">%
   直接短縮スキル2
   <input type="number" v-model.number="directReductionSkill2">%
@@ -128,17 +181,18 @@ const cumulativeSixthAttack = computed(
   <input type="number" v-model.number="directReductionSkill3">%
   <br>
   <br>
-  1回目のみの直接短縮スキル
+  1回目のみの直接短縮スキル(プリンス・オブ・ウェールズなど)
   <input type="number" v-model.number="oneTimeDirectReductionSkill">%
-  2回目までの直接短縮スキル
+  2回目までの直接短縮スキル(レナウン(META)など)
   <input type="number" v-model.number="upToSecondDirectReductionSkill">%
-  3回目までの直接短縮スキル
+  3回目までの直接短縮スキル(リトル・レナウンなど)
   <input type="number" v-model.number="upToThirdDirectReductionSkill">%
   <br>
   <br>
-  高性能火器管制レーダーまたはアドミラルティ射撃統制システム<input type="checkbox" v-model="highPeformanceFireControllRader">
+  高性能火器管制レーダーまたはアドミラルティ射撃統制システム<input type="checkbox" v-model="highPeformanceFireControllRader">  <br>
+  【試作砲身】(試作型406mm連装砲Mk4)自身の5回目以降の主砲攻撃の装填時間が35%長くなる<input type="checkbox" v-model="experimentalGunBarrel">
   <hr>
-攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目):{{ thirdAttack }} 攻速(4回目以降):{{ fourthTimeOnwardsAttack }}
+攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目):{{ thirdAttack }} 攻速(4回目):{{ fourthAttack }} 攻速(5回目以降):{{ fifthAttack }}
 <br>
 攻撃1回目:{{ firstAttack }}<br>
 攻撃2回目:{{ cumulativeSecondAttack }}<br>
@@ -146,7 +200,12 @@ const cumulativeSixthAttack = computed(
 攻撃4回目:{{ cumulativeFourthAttack }}<br>
 攻撃5回目:{{ cumulativeFifthAttack }}<br>
 攻撃6回目:{{ cumulativeSixthAttack }}<br>
-
+攻撃7回目:{{ cumulativeSeventhAttack }}<br>
+攻撃8回目:{{ cumulativeEighthAttack}}<br>
+攻撃9回目:{{ cumulativeNinthAttack }}<br>
+攻撃10回目:{{ cumulativeTenthAttack }}<br>
+攻撃11回目:{{ cumulativeEleventhAttack }}<br>
+攻撃12回目:{{ cumulativeTwelfthAttack }}<br>
 
 </template>
 
