@@ -6,6 +6,7 @@ const defaultRateOfFire = ref(0);
 const defaultReload = ref(0);
 const equipmentReload = ref(0);
 const fleetTechnology = ref(0);
+const meowfficer = ref(0);
 
 const skill1 = ref(0);
 const skill2 = ref(0);
@@ -27,7 +28,7 @@ const experimentalGunBarrel = ref(false);
 
 const firstAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
     if(highPeformanceFireControllRader.value){
       attackTime = attackTime * 0.85;
     }
@@ -37,28 +38,28 @@ const firstAttack = computed(
 )
 const secondAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const thirdAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value +meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const fourthAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const fifthAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
     if(experimentalGunBarrel.value) {
       attackTime = attackTime * 1.35;
     }
@@ -156,6 +157,8 @@ const cumulativeTwelfthAttack = computed(
   <input type="number" v-model.number="equipmentReload">
   艦船技術の装填値
   <input type="number" v-model.number="fleetTechnology">
+  オフニャの装填値
+  <input type="number" v-model.number="meowfficer">
   <br>
   <br>
   装填上昇スキル1
@@ -194,18 +197,18 @@ const cumulativeTwelfthAttack = computed(
   <hr>
 攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目):{{ thirdAttack }} 攻速(4回目):{{ fourthAttack }} 攻速(5回目以降):{{ fifthAttack }}
 <br>
-攻撃1回目:{{ firstAttack }}<br>
-攻撃2回目:{{ cumulativeSecondAttack }}<br>
-攻撃3回目:{{ cumulativeThirdAttack }}<br>
-攻撃4回目:{{ cumulativeFourthAttack }}<br>
-攻撃5回目:{{ cumulativeFifthAttack }}<br>
-攻撃6回目:{{ cumulativeSixthAttack }}<br>
-攻撃7回目:{{ cumulativeSeventhAttack }}<br>
-攻撃8回目:{{ cumulativeEighthAttack}}<br>
-攻撃9回目:{{ cumulativeNinthAttack }}<br>
-攻撃10回目:{{ cumulativeTenthAttack }}<br>
-攻撃11回目:{{ cumulativeEleventhAttack }}<br>
-攻撃12回目:{{ cumulativeTwelfthAttack }}<br>
+攻撃1回目:{{ firstAttack }}s<br>
+攻撃2回目:{{ cumulativeSecondAttack }}s<br>
+攻撃3回目:{{ cumulativeThirdAttack }}s<br>
+攻撃4回目:{{ cumulativeFourthAttack }}s<br>
+攻撃5回目:{{ cumulativeFifthAttack }}s<br>
+攻撃6回目:{{ cumulativeSixthAttack }}s<br>
+攻撃7回目:{{ cumulativeSeventhAttack }}s<br>
+攻撃8回目:{{ cumulativeEighthAttack}}s<br>
+攻撃9回目:{{ cumulativeNinthAttack }}s<br>
+攻撃10回目:{{ cumulativeTenthAttack }}s<br>
+攻撃11回目:{{ cumulativeEleventhAttack }}s<br>
+攻撃12回目:{{ cumulativeTwelfthAttack }}s<br>
 
 </template>
 
