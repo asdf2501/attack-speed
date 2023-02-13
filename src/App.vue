@@ -22,13 +22,14 @@ const directReductionSkill3 = ref(0);
 const oneTimeDirectReductionSkill = ref(0);
 const upToSecondDirectReductionSkill = ref(0);
 const upToThirdDirectReductionSkill = ref(0);
+const upToFourthDirectReductionSkill = ref(0);
 
 const highPeformanceFireControllRader = ref(false);
 const experimentalGunBarrel = ref(false);
 
 const firstAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100 + upToFourthDirectReductionSkill.value/100)));
     if(highPeformanceFireControllRader.value){
       attackTime = attackTime * 0.85;
     }
@@ -38,21 +39,21 @@ const firstAttack = computed(
 )
 const secondAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100 + upToFourthDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const thirdAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value +meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value +meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100 + upToFourthDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const fourthAttack = computed(
   (): number => {
-    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100)));
+    let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToFourthDirectReductionSkill.value/100)));
     attackTime = (Math.ceil(attackTime * 100)) / 100;
     return attackTime;
   }
@@ -185,11 +186,13 @@ const cumulativeTwelfthAttack = computed(
   <br>
   <br>
   1回目のみの直接短縮スキル(プリンス・オブ・ウェールズなど)
-  <input type="number" v-model.number="oneTimeDirectReductionSkill">%
+  <input type="number" v-model.number="oneTimeDirectReductionSkill">%<br>
   2回目までの直接短縮スキル(レナウン(META)など)
-  <input type="number" v-model.number="upToSecondDirectReductionSkill">%
+  <input type="number" v-model.number="upToSecondDirectReductionSkill">%<br>
   3回目までの直接短縮スキル(リトル・レナウンなど)
-  <input type="number" v-model.number="upToThirdDirectReductionSkill">%
+  <input type="number" v-model.number="upToThirdDirectReductionSkill">%<br>
+  4回目までの直接短縮スキル(ガングートなど)
+  <input type="number" v-model.number="upToFourthDirectReductionSkill">%
   <br>
   <br>
   高性能火器管制レーダーまたはアドミラルティ射撃統制システム<input type="checkbox" v-model="highPeformanceFireControllRader">  <br>
