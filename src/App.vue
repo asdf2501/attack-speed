@@ -148,6 +148,8 @@ const cumulativeTwelfthAttack = computed(
 </script>
 
 <template>
+  <h2>アズールレーン攻撃速度計算機</h2>
+  <h3>砲撃</h3>
   装備の基本攻速(装備をキャラから外した状態で見てください)
   <input type="number" step="0.01" v-model.number="defaultRateOfFire">s
   <br>
