@@ -55,7 +55,6 @@ const firstAttack = computed(
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
-        attackTime = (Math.ceil(attackTime * 100)) / 100;
         return attackTime;
     }
 )
@@ -65,7 +64,7 @@ const secondAttack = computed(
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
-        attackTime = (Math.ceil(attackTime * 100)) / 100;
+        attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
     }
 )
@@ -75,7 +74,7 @@ const thirdAttack = computed(
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
-        attackTime = (Math.ceil(attackTime * 100)) / 100;
+        attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
     }
 )
@@ -83,35 +82,35 @@ const thirdAttack = computed(
 const cumulativeSecondAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeThirdAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFourthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 2;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFifthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 3;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSixthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 4;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )

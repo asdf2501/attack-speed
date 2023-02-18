@@ -10,6 +10,10 @@
             :class="{ active: currentTab === 'Plane'}"
             @click="currentTab = 'Plane'"           
           >航空</li>
+          <li
+            :class="{ active: currentTab === 'FDG'}"
+            @click="currentTab = 'FDG'"           
+          >フリードリヒ・デア・グローセ</li>
         </ul>
         <div class="tabs-content">
           <keep-alive>
@@ -22,6 +26,7 @@
 <script lang="ts">
 import Gun from "./components/Gun.vue";
 import Plane from "./components/Plane.vue";
+import FDG from "./components/FDG.vue";
 
 export default {
   data() {
@@ -32,6 +37,7 @@ export default {
   components: {
     Gun,
     Plane,
+    FDG,
   }
 }
 </script>
