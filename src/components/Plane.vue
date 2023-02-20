@@ -55,6 +55,7 @@ const firstAttack = computed(
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
+        attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
     }
 )
