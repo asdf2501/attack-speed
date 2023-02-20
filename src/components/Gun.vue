@@ -33,28 +33,28 @@ const firstAttack = computed(
     if(highPeformanceFireControllRader.value){
       attackTime = attackTime * 0.85;
     }
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const secondAttack = computed(
   (): number => {
     let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100 + upToFourthDirectReductionSkill.value/100)));
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const thirdAttack = computed(
   (): number => {
     let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value +meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100 + upToFourthDirectReductionSkill.value/100)));
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const fourthAttack = computed(
   (): number => {
     let attackTime = ( defaultRateOfFire.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100))) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToFourthDirectReductionSkill.value/100)));
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
@@ -64,84 +64,84 @@ const fifthAttack = computed(
     if(experimentalGunBarrel.value) {
       attackTime = attackTime * 1.35;
     }
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSecondAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeThirdAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFourthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFifthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSixthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*2;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSeventhAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*3;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeEighthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*4;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeNinthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*5;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeTenthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*6;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeEleventhAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*7;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeTwelfthAttack = computed(
   (): number => {
     let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value + fifthAttack.value*8;
-    attackTime = (Math.ceil(attackTime * 100)) / 100;
+    attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
