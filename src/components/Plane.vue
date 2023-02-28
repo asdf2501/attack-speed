@@ -27,6 +27,7 @@ const directReductionSkill3 = ref(0);
 
 const oneTimeDirectReductionSkill = ref(0);
 const upToSecondDirectReductionSkill = ref(0);
+const upToThirdDirectReductionSkill = ref(0);
 
 const homingBeacon = ref(false);
 
@@ -51,7 +52,7 @@ const attackSpeedOfPlane3 = computed(
 
 const firstAttack = computed(
     (): number => {
-        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value + upToSecondDirectReductionSkill.value/100));
+        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100));
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
@@ -61,7 +62,7 @@ const firstAttack = computed(
 )
 const secondAttack = computed(
     (): number => {
-        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100));
+        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100));
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
@@ -71,7 +72,7 @@ const secondAttack = computed(
 )
 const thirdAttack = computed(
     (): number => {
-        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 ));
+        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100));
         if(homingBeacon.value){
             attackTime = attackTime * 0.96;
         }
@@ -79,6 +80,18 @@ const thirdAttack = computed(
         return attackTime;
     }
 )
+const fourthAttack = computed(
+    (): number => {
+        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100));
+        if(homingBeacon.value){
+            attackTime = attackTime * 0.96;
+        }
+        attackTime = (Math.floor(attackTime * 100)) / 100;
+        return attackTime;
+    }
+)
+
+
 
 const cumulativeSecondAttack = computed(
   (): number => {
@@ -96,21 +109,21 @@ const cumulativeThirdAttack = computed(
 )
 const cumulativeFourthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 2;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value;
     attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeFifthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 3;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value*2;
     attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
 )
 const cumulativeSixthAttack = computed(
   (): number => {
-    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value * 4;
+    let attackTime = firstAttack.value + secondAttack.value + thirdAttack.value + fourthAttack.value*3;
     attackTime = (Math.floor(attackTime * 100)) / 100;
     return attackTime;
   }
@@ -173,11 +186,13 @@ const cumulativeSixthAttack = computed(
     <input type="number" v-model.number="oneTimeDirectReductionSkill">%<br>
     2回目までの直接短縮スキル(伊勢改など)
     <input type="number" v-model.number="upToSecondDirectReductionSkill">%<br>
-    <br>
+    3回目までの直接短縮スキル(ペーター・シュトラッサーなど)
+    <input type="number" v-model.number="upToThirdDirectReductionSkill">%<br>
+   <br>
     ホーミングビーコン
     <input type="checkbox" v-model="homingBeacon">
     <hr>
-    攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目以降):{{ thirdAttack }}
+    攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目):{{ thirdAttack }} 攻速(4回目以降):{{ fourthAttack }}
     <br>
     攻撃1回目:{{ firstAttack }}s<br>
     攻撃2回目:{{ cumulativeSecondAttack }}s<br>
