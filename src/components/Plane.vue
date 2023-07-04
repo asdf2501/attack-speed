@@ -29,32 +29,74 @@ const oneTimeDirectReductionSkill = ref(0);
 const upToSecondDirectReductionSkill = ref(0);
 const upToThirdDirectReductionSkill = ref(0);
 
+const bisyamaru = ref(false);
+const bisyamaruSikihojo = ref(161);
+const hangekikedamakenLv3 =ref(false);
+
 const homingBeacon = ref(false);
+const eliteAviationMaintenanceManjuu = ref(false);
+
+const hangekikedamakenLv1 = computed(
+  (): number => {
+    let correction = 0.8 * bisyamaruSikihojo.value / 100 ;
+    if(bisyamaru.value){return correction}
+    else {return 0};
+  }
+)
 
 const attackSpeedOfPlane1 = computed(
     (): number => {
-        let attackTime =  defaultReloadSpeed1.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100)));
+        let attackTime =  defaultReloadSpeed1.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)));
         return attackTime;
     }
 )
 const attackSpeedOfPlane2 = computed(
     (): number => {
-        let attackTime =  defaultReloadSpeed2.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100)));
+        let attackTime =  defaultReloadSpeed2.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)));
         return attackTime;
     }
 )
 const attackSpeedOfPlane3 = computed(
     (): number => {
-        let attackTime =  defaultReloadSpeed3.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100)));
+        let attackTime =  defaultReloadSpeed3.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)));
+        return attackTime;
+    }
+)
+
+const firstAttackSpeedOfPlane1 = computed(
+    (): number => {
+        let attackTime = 0;
+        if(bisyamaru.value && hangekikedamakenLv3.value) {attackTime = defaultReloadSpeed1.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100 + 8/100)))}
+        else{ attackTime = defaultReloadSpeed1.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)))};
+        return attackTime;
+    }
+)
+const firstAttackSpeedOfPlane2 = computed(
+    (): number => {
+        let attackTime = 0;
+        if(bisyamaru.value && hangekikedamakenLv3.value){attackTime = defaultReloadSpeed2.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100 + 8/100)))}
+        else{attackTime = defaultReloadSpeed2.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)))};
+        return attackTime;
+    }
+)
+const firstAttackSpeedOfPlane3 = computed(
+    (): number => {
+      let attackTime = 0;
+        if(bisyamaru.value && hangekikedamakenLv3.value){attackTime = defaultReloadSpeed3.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100+ 8/100)))}
+        else{attackTime = defaultReloadSpeed2.value * Math.sqrt( 200 / ( 100 + ( defaultReload.value + equipmentReload.value + fleetTechnology.value + meowfficer.value ) * (1 + skill1.value/100 + skill2.value/100 + skill3.value/100 + skill4.value/100 + skill5.value/100 + skill6.value/100 + hangekikedamakenLv1.value/100)))};
         return attackTime;
     }
 )
 
 const firstAttack = computed(
     (): number => {
-        let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100));
-        if(homingBeacon.value){
+        let attackTime = (( firstAttackSpeedOfPlane1.value * numberOfPlane1.value + firstAttackSpeedOfPlane2.value * numberOfPlane2.value + firstAttackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + oneTimeDirectReductionSkill.value + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100));
+        if(homingBeacon.value && eliteAviationMaintenanceManjuu.value){}
+        else if(homingBeacon.value){
             attackTime = attackTime * 0.96;
+        }
+        else if(eliteAviationMaintenanceManjuu.value){
+            attackTime = attackTime * 1.04;
         }
         attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
@@ -63,8 +105,12 @@ const firstAttack = computed(
 const secondAttack = computed(
     (): number => {
         let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToSecondDirectReductionSkill.value/100 + upToThirdDirectReductionSkill.value/100));
-        if(homingBeacon.value){
+        if(homingBeacon.value && eliteAviationMaintenanceManjuu.value){}
+        else if(homingBeacon.value){
             attackTime = attackTime * 0.96;
+        }
+        else if(eliteAviationMaintenanceManjuu.value){
+            attackTime = attackTime * 1.04;
         }
         attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
@@ -73,8 +119,12 @@ const secondAttack = computed(
 const thirdAttack = computed(
     (): number => {
         let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100 + upToThirdDirectReductionSkill.value/100));
-        if(homingBeacon.value){
+        if(homingBeacon.value && eliteAviationMaintenanceManjuu.value){}
+        else if(homingBeacon.value){
             attackTime = attackTime * 0.96;
+        }
+        else if(eliteAviationMaintenanceManjuu.value){
+            attackTime = attackTime * 1.04;
         }
         attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
@@ -83,8 +133,12 @@ const thirdAttack = computed(
 const fourthAttack = computed(
     (): number => {
         let attackTime = (( attackSpeedOfPlane1.value * numberOfPlane1.value + attackSpeedOfPlane2.value * numberOfPlane2.value + attackSpeedOfPlane3.value * numberOfPlane3.value) *2.2 / (numberOfPlane1.value + numberOfPlane2.value + numberOfPlane3.value) + 0.01 ) * ( 1 - ( directReductionSkill1.value/100 + directReductionSkill2.value/100 + directReductionSkill3.value/100));
-        if(homingBeacon.value){
+        if(homingBeacon.value && eliteAviationMaintenanceManjuu.value){}
+        else if(homingBeacon.value){
             attackTime = attackTime * 0.96;
+        }
+        else if(eliteAviationMaintenanceManjuu.value){
+            attackTime = attackTime * 1.04;
         }
         attackTime = (Math.floor(attackTime * 100)) / 100;
         return attackTime;
@@ -191,6 +245,16 @@ const cumulativeSixthAttack = computed(
    <br>
     ホーミングビーコン
     <input type="checkbox" v-model="homingBeacon">
+    <br>
+    精鋭航空整備饅頭
+    <input type="checkbox" v-model="eliteAviationMaintenanceManjuu">
+    <br>
+    オフニャ：ビシャマル
+    <input type="checkbox" v-model="bisyamaru">
+    ビシャマルの指揮補助
+    <input type="number" v-model.number="bisyamaruSikihojo">反撃毛玉拳Lv1の効果:{{ hangekikedamakenLv1 }}%
+    反撃毛玉拳Lv3
+    <input type="checkbox" v-model="hangekikedamakenLv3">
     <hr>
     攻速(1回目):{{ firstAttack }} 攻速(2回目):{{ secondAttack }} 攻速(3回目):{{ thirdAttack }} 攻速(4回目以降):{{ fourthAttack }}
     <br>
